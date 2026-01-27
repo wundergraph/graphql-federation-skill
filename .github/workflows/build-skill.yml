@@ -20,8 +20,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: sudo apt-get install -y zip unzip
+
       - name: Build skill file
-        run: make clean build
+        run: |
+          set -e
+          make clean build
+          echo "Build completed, file size: $(stat -c%s graphql-federation.skill) bytes"
 
       - name: Check for changes
         id: changes
