@@ -1,7 +1,7 @@
 ---
 name: graphql-federation
 description: |
-  GraphQL Federation skill for creating correct federation subgraphs with WunderGraph Cosmo. Use when: (1) Creating new federation subgraphs, (2) Adding entities with @key directives, (3) Extending types across subgraphs, (4) Using federation directives (@shareable, @external, @override, @provides, @requires, @inaccessible, @interfaceObject, @authenticated, @requiresScopes), (5) Debugging composition errors, (6) Understanding federation rules and patterns.
+  GraphQL Federation skill for creating correct federation subgraphs. Use when: (1) Creating new federation subgraphs, (2) Adding entities with @key directives, (3) Extending types across subgraphs, (4) Using federation directives (@shareable, @external, @override, @provides, @requires, @inaccessible, @interfaceObject, @authenticated, @requiresScopes), (5) Debugging composition errors, (6) Understanding federation rules and patterns.
   MANDATORY TRIGGERS: federation, subgraph, @key, entity, federated graph, supergraph, GraphQL composition, router schema
 ---
 
