@@ -1,0 +1,51 @@
+name: Build Skill File
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'SKILL.md'
+      - 'references/**'
+      - 'Makefile'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build skill file
+        run: make clean build
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet graphql-federation.skill; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: rebuild graphql-federation.skill'
+          title: 'chore: Update graphql-federation.skill'
+          body: |
+            This PR was automatically generated after changes were merged to main.
+
+            The `graphql-federation.skill` file has been rebuilt from the source files.
+
+            ---
+            *This is an automated PR created by the build-skill workflow.*
+          branch: chore/update-skill-file
+          delete-branch: true
+          labels: automated
