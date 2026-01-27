@@ -38,6 +38,18 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: Close existing PRs
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Find and close any open PRs with the automated label
+          open_prs=$(gh pr list --label "automated" --state open --json number --jq '.[].number')
+          for pr in $open_prs; do
+            echo "Closing PR #$pr"
+            gh pr close "$pr" --comment "Superseded by a newer build."
+          done
+
       - name: Create Pull Request
         if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
