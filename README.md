@@ -22,43 +22,82 @@ This skill provides your AI assistant with:
 
 ### Claude Code
 
-Add to your project's `.claude/settings.json`:
+Claude Code automatically discovers skills from `.claude/skills/` directories. Copy the skill files to your project or personal skills folder:
 
-```json
-{
-  "skills": ["github:wundergraph/graphql-federation-skill"]
-}
+**Project-level** (for this project only):
+```bash
+# Clone and copy to your project
+git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
+mkdir -p .claude/skills/graphql-federation
+cp /tmp/gql-fed-skill/SKILL.md .claude/skills/graphql-federation/
+cp -r /tmp/gql-fed-skill/references .claude/skills/graphql-federation/
 ```
 
-Or install globally in `~/.claude/settings.json` to use across all projects.
+**Personal** (available across all your projects):
+```bash
+# Clone and copy to your personal skills folder
+git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
+mkdir -p ~/.claude/skills/graphql-federation
+cp /tmp/gql-fed-skill/SKILL.md ~/.claude/skills/graphql-federation/
+cp -r /tmp/gql-fed-skill/references ~/.claude/skills/graphql-federation/
+```
+
+Claude Code will automatically detect and use the skill when working with GraphQL Federation. You can also invoke it directly with `/graphql-federation`.
 
 ### Cursor
 
-Add to your project's `.cursor/rules` or `.cursorrules` file:
+Cursor uses project rules stored in `.cursor/rules/` as markdown files. The legacy `.cursorrules` file is deprecated.
 
+```bash
+# Clone and copy to your project
+git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
+mkdir -p .cursor/rules
+cp /tmp/gql-fed-skill/SKILL.md .cursor/rules/graphql-federation.md
 ```
-@skill github:wundergraph/graphql-federation-skill
+
+Optionally, add frontmatter to control when the rule applies:
+
+```yaml
+---
+description: "GraphQL Federation patterns and directives for subgraph development"
+globs: ["**/*.graphql", "**/*.gql"]
+---
 ```
+
+Cursor also supports `AGENTS.md` in your project root as a simpler alternative.
 
 ### Windsurf
 
-Add to your project's `.windsurfrules` file:
+Windsurf uses workspace rules stored in `.windsurf/rules/` as markdown files.
 
+```bash
+# Clone and copy to your project
+git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
+mkdir -p .windsurf/rules
+cp /tmp/gql-fed-skill/SKILL.md .windsurf/rules/graphql-federation.md
 ```
-@skill github:wundergraph/graphql-federation-skill
-```
+
+After adding the rule, configure its activation mode via **Windsurf Settings > Cascade > Rules**:
+- **Always On**: Applied to every conversation
+- **Model Decision**: Applied when Windsurf determines it's relevant
+- **Glob**: Applied only when working with files matching patterns (e.g., `*.graphql`)
 
 ### Cline
 
-Add to your Cline custom instructions or project rules:
+Cline uses workspace rules stored in `.clinerules/` directory at your project root.
 
+```bash
+# Clone and copy to your project
+git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
+mkdir -p .clinerules
+cp /tmp/gql-fed-skill/SKILL.md .clinerules/graphql-federation.md
 ```
-Load skill from: github:wundergraph/graphql-federation-skill
-```
+
+Cline automatically processes all markdown files in `.clinerules/`. You can also use `AGENTS.md` in your project root as an alternative.
 
 ### Manual Installation
 
-Download the `graphql-federation.skill` file and reference it in your AI tool's configuration, or copy the contents of `SKILL.md` into your project's AI instructions.
+Copy the contents of `SKILL.md` (and optionally the `references/` directory) into your AI tool's custom instructions or project rules. The skill content works with any AI coding assistant that supports custom prompts or system instructions.
 
 ## What's Included
 
