@@ -53,6 +53,7 @@ Cursor uses project rules stored in `.cursor/rules/` as markdown files. The lega
 git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
 mkdir -p .cursor/rules
 cp /tmp/gql-fed-skill/SKILL.md .cursor/rules/graphql-federation.md
+cp -r /tmp/gql-fed-skill/references .cursor/rules
 ```
 
 Optionally, add frontmatter to control when the rule applies:
@@ -75,6 +76,7 @@ Windsurf uses workspace rules stored in `.windsurf/rules/` as markdown files.
 git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
 mkdir -p .windsurf/rules
 cp /tmp/gql-fed-skill/SKILL.md .windsurf/rules/graphql-federation.md
+cp -r /tmp/gql-fed-skill/references/* .windsurf/rules
 ```
 
 After adding the rule, configure its activation mode via **Windsurf Settings > Cascade > Rules**:
@@ -91,6 +93,7 @@ Cline uses workspace rules stored in `.clinerules/` directory at your project ro
 git clone https://github.com/wundergraph/graphql-federation-skill.git /tmp/gql-fed-skill
 mkdir -p .clinerules
 cp /tmp/gql-fed-skill/SKILL.md .clinerules/graphql-federation.md
+cp -r /tmp/gql-fed-skill/references/* .clinerules
 ```
 
 Cline automatically processes all markdown files in `.clinerules/`. You can also use `AGENTS.md` in your project root as an alternative.
