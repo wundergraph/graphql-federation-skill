@@ -1,0 +1,21 @@
+{
+  "name": "wundergraph-graphql-federation",
+  "owner": {
+    "name": "WunderGraph"
+  },
+  "metadata": {
+    "description": "GraphQL Federation skill for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "graphql-federation",
+      "description": "GraphQL Federation skill for creating correct federation subgraphs. Covers entities, @key, @shareable, @external, @requires, @provides, @override, @inaccessible, @interfaceObject, @authenticated, @requiresScopes, composition rules, and real-world patterns.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/graphql-federation"
+      ]
+    }
+  ]
+}
